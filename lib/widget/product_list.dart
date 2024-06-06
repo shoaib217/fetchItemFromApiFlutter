@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:http_demo/data/Products.dart';
+import 'package:http_demo/data/products.dart';
+import 'package:http_demo/screen/add_new_product_screen.dart';
 import 'package:http_demo/widget/product_item.dart';
 
 // ignore: must_be_immutable
@@ -69,6 +70,21 @@ class _ProductListState extends State<ProductList> {
           return ProductItem(widget.products[index]);
         },
       ),
+      /* floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) {
+              return AddNewProduct();
+            },
+          ));
+        },
+        backgroundColor:
+            Theme.of(context).buttonTheme.colorScheme?.onPrimaryContainer,
+        child: Icon(
+          Icons.add,
+          color: Theme.of(context).buttonTheme.colorScheme?.onPrimary,
+        ),
+      ), */
     );
   }
 }

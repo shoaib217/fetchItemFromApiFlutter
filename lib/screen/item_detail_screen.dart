@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:http_demo/data/Products.dart';
+import 'package:http_demo/data/products.dart';
 
 class ItemDetailScreen extends StatelessWidget {
   const ItemDetailScreen(this.product, {super.key});
@@ -31,7 +31,7 @@ class ItemDetailScreen extends StatelessWidget {
           },
         );
         return Dialog(
-          backgroundColor:Colors.transparent,
+          backgroundColor: Colors.transparent,
           child: CarouselSlider(
             options: CarouselOptions(
               initialPage: initialIndex,

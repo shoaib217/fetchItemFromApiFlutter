@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:http_demo/data/Products.dart';
+import 'package:http_demo/data/products.dart';
 
 const String api = "https://dummyjson.com/products";
 

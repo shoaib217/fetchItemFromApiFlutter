@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:ffi';
 
 class Products {
   int limit;
@@ -13,25 +13,30 @@ class Products {
       required this.products});
 
   factory Products.fromJson(Map<String, dynamic> json) {
+    print("product list ${json}");
     var dynamicLists = json["products"] as List<dynamic>;
     var productList = dynamicLists.map((dynamicData) {
       var dynamicImageList = dynamicData["images"] as List<dynamic>;
-      var images = dynamicImageList.map((image) {
-        return image.toString();
-      },).toList();
+      var images = dynamicImageList.map(
+        (image) {
+          return image.toString();
+        },
+      ).toList();
 
       return Product(
-          brand: dynamicData["brand"] as String,
-          category: dynamicData["category"] as String,
-          description: dynamicData["description"] as String,
-          discountPercentage: dynamicData["discountPercentage"] as double,
-          id: dynamicData["id"] as int,
+          brand: dynamicData["brand"].toString(),
+          category: dynamicData["category"].toString(),
+          description: dynamicData["description"].toString(),
+          discountPercentage:
+              double.tryParse(dynamicData["discountPercentage"].toString()) ??
+                  0.0,
+          id: int.tryParse(dynamicData["id"].toString()) ?? 0,
           images: images,
-          price: dynamicData["price"] as int,
-          rating: double.parse(dynamicData["rating"].toString()),
-          stock: dynamicData["stock"] as int,
-          thumbnail: dynamicData["thumbnail"] as String,
-          title: dynamicData["title"] as String);
+          price: double.tryParse(dynamicData["price"].toString()) ?? 0.0,
+          rating: double.tryParse(dynamicData["rating"].toString()) ?? 0.0,
+          stock: int.tryParse(dynamicData["stock"].toString()) ?? 0,
+          thumbnail: dynamicData["thumbnail"].toString(),
+          title: dynamicData["title"].toString());
     }).toList();
     return Products(
         limit: json["limit"],
@@ -48,7 +53,7 @@ class Product {
   double discountPercentage;
   int id;
   List<String> images;
-  int price;
+  double price;
   double rating;
   int stock;
   String thumbnail;

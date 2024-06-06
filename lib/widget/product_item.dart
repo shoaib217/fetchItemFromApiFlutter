@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http_demo/data/Products.dart';
+import 'package:http_demo/data/products.dart';
 import 'package:http_demo/screen/item_detail_screen.dart';
 
 class ProductItem extends StatelessWidget {
@@ -35,6 +35,7 @@ class ProductItem extends StatelessWidget {
           children: [
             Expanded(
               child: Image.network(
+                width: double.infinity,
                 product.images[0],
                 fit: BoxFit.fitWidth,
                 alignment: Alignment.center,
