@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:http_demo/data/products.dart';
-import 'package:http_demo/screen/add_new_product_screen.dart';
 import 'package:http_demo/widget/product_item.dart';
 
 // ignore: must_be_immutable

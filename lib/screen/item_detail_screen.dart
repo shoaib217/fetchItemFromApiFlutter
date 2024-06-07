@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:http_demo/data/products.dart';
+import 'package:http_demo/extentions.dart';
 
 class ItemDetailScreen extends StatelessWidget {
   const ItemDetailScreen(this.product, {super.key});
@@ -40,8 +42,8 @@ class ItemDetailScreen extends StatelessWidget {
             items: product.images
                 .map((url) => Container(
                       margin: const EdgeInsets.all(8),
-                      child: Image.network(
-                        url,
+                      child: CachedNetworkImage(
+                        imageUrl: url,
                         fit: BoxFit.cover,
                       ),
                     ))
@@ -80,7 +82,8 @@ class ItemDetailScreen extends StatelessWidget {
               height: 12,
             ),
             _myText(context, "Category", product.category),
-            _myText(context, "Brand", product.brand),
+            if (product.brand.isNotNullOrEmpty())
+              _myText(context, "Brand", product.brand),
             _myText(context, "Price", "\$${product.price}"),
             _myText(context, "Details", product.description),
             Row(

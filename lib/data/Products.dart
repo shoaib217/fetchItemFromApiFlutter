@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class Products {
   int limit;
   int skip;

@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:http_demo/data/products.dart';
+import 'package:http_demo/extentions.dart';
 import 'package:http_demo/screen/item_detail_screen.dart';
 
 class ProductItem extends StatelessWidget {
@@ -34,14 +36,24 @@ class ProductItem extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: Image.network(
+              child: CachedNetworkImage(
                 width: double.infinity,
-                product.images[0],
+                imageUrl: product.images[0],
                 fit: BoxFit.fitWidth,
                 alignment: Alignment.center,
+                filterQuality: FilterQuality.low,
+                fadeInDuration: const Duration(seconds: 2),
+                progressIndicatorBuilder: (context, url, progress) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: progress.progress,
+                    ),
+                  );
+                },
               ),
             ),
-            _myText(context, "Brand", product.brand),
+            if (product.brand.isNotNullOrEmpty())
+              _myText(context, "Brand", product.brand),
             _myText(context, "Title", product.title),
             _myText(context, "Price", "\$${product.price}"),
           ],
